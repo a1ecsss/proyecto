@@ -27,4 +27,4 @@ class Cuenta:
         total = cursor.fetchone()
         cursor.close()
         conn.close()
-        return total if total else 0.0
+        return total if total else 0.0 
