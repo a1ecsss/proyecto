@@ -1,9 +1,13 @@
 import mysql.connector
 from db_connection import get_connection
+from random import randint as ran
 
 class Usuario:
-    def __init__(self, nombre):
-        self.nombre = nombre
+    def __init__(self):
+        self.id = 965485
+        self.nombre = ""
+        self.correo = ""
+        
 
     def login(self, email, password):
         if not email or not password:
