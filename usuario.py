@@ -7,7 +7,6 @@ class Usuario:
         self.id = 965485
         self.nombre = ""
         self.correo = ""
-        
 
     def login(self, email, password):
         if not email or not password:
@@ -30,6 +29,7 @@ class Usuario:
         except Exception as e:
             return 0
 
+
     def crear_usuario(self):
         #Crea un nuevo usuario en la base de datos
         conn = get_connection()
@@ -42,7 +42,6 @@ class Usuario:
         conn.close()
         return user_id
 
-
     def obtener_historial(self, usuario_id):
         #Retorna el historial de pagos de un usuario dado su ID
         conn = get_connection()
@@ -53,3 +52,4 @@ class Usuario:
         cursor.close()
         conn.close()
         return historial if historial else []
+
