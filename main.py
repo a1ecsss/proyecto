@@ -64,46 +64,6 @@ class App(Tk):
         Button(self, text="Ver Promociones", font=("Times", 22), bg="#2e2e2e",fg="white" , relief="flat", width=20, command=self.ver_promociones).pack(pady=10)
         Button(self, text="Cerrar Sesión", font=("Times", 22), bg="#2e2e2e",fg="white" , relief="flat", width=20, command=self.cerrar_sesion).pack(pady=10)
 
-    def ver_promociones(self):
-        self.limpiar_ventana()
-        self.home_button()
-        # Crear un Frame para contener el scrollbar y el contenido
-        container = Frame(self)
-        container.pack(fill="both", expand=True)
-        # Crear un Canvas para agregar el scrollbar
-        canvas = Canvas(container)
-        canvas.pack(side="left", fill="both", expand=True)
-        # Scrollbar
-        scrollbar = Scrollbar(container, orient="vertical", command=canvas.yview)
-        scrollbar.pack(side="right", fill="y")
-        # Configurar el Canvas para que funcione con el scrollbar
-        canvas.configure(yscrollcommand=scrollbar.set)
-        canvas.bind("<Configure>",lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
-        # Frame interno donde se mostrará el contenido
-        content_frame = Frame(canvas)
-        canvas.create_window((0, 0), window=content_frame, anchor="nw")
-        # Ejemplo de matriz de promociones (puedes sustituirla con datos reales)
-        promociones = self.promocion.obtener_promociones()
-        # Mostrar cada promoción dentro de un loop
-        for promo in promociones:
-            promo_frame = Frame(content_frame, bg="white", padx=10, pady=10)
-            promo_frame.pack(fill="x", pady=5)
-            img = Image.open(promo[0]+".webp")
-            img = img.resize((100, 100))  # Ajustar tamaño
-            photo = ImageTk.PhotoImage(img)
-            image_label = Label(promo_frame, image=photo)
-            image_label.image = photo  # Mantener referencia
-            image_label.pack(side="left", padx=10)
-            # Mostrar la información de la promoción
-            info_frame = Frame(promo_frame, bg="white")
-            info_frame.pack(side="left", fill="both", expand=True)
-            Label(info_frame, text=f"Descripción: {promo[1]}", font=("Times", 14), bg="white", anchor="w").pack(fill="x")
-            Label(info_frame, text=f"Descuento: {promo[2]}", font=("Times", 12), bg="white", anchor="w").pack(fill="x")
-            Label(info_frame, text=f"Inicio: {promo[3]}", font=("Times", 12), bg="white", anchor="w").pack(fill="x")
-            Label(info_frame, text=f"Fin: {promo[4]}", font=("Times", 12), bg="white", anchor="w").pack(fill="x")
-        canvas.update_idletasks()
-        self.home_button()
-
     def crear_mesa(self):
        self.limpiar_ventana()
        self.home_button()
@@ -258,4 +218,3 @@ if __name__ == '__main__':
     proceso2.join()
 
 App().mainloop()
-
