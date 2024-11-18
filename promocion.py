@@ -31,3 +31,13 @@ class Promocion:
         cursor.close()
         conn.close()
         return promociones
+
+    def obtener_promociones(self):
+        conn = get_connection()
+        cursor = conn.cursor()
+        query = "SELECT * FROM promociones"
+        cursor.execute(query)
+        promociones = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return promociones
